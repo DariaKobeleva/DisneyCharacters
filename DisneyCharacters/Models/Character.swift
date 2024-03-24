@@ -8,21 +8,22 @@
 import Foundation
 
 //Не смогла разобраться, как получить массив Character из поля data
-struct CharactersResponse: Decodable {
-    let data: [Character]
-    
-    init(charactersResponseDetails: [String: Any]) {
-        data = Character.getCharacters(from: charactersResponseDetails["data"] ?? [])
-        print(data)
-    }
-    
-    static func getCharactersResponse(from value: Any) -> CharactersResponse {
-        guard let charactersResponseDetails = value as? [String: Any] else { return []}
-        
-        return CharactersResponse(charactersResponseDetails: charactersResponseDetails)
-    }
-}
-}
+
+//struct CharactersResponse: Decodable {
+//    let data: [Character]
+//    
+//    init(charactersResponseDetails: [String: Any]) {
+//        data = Character.getCharacters(from: charactersResponseDetails["data"] ?? [])
+//        print(data)
+//    }
+//    
+//    static func getCharactersResponse(from value: Any) -> CharactersResponse {
+//        guard let charactersResponseDetails = value as? [String: Any] else { return []}
+//        
+//        return CharactersResponse(charactersResponseDetails: charactersResponseDetails)
+//    }
+//}
+
 
 struct Character: Decodable {
     let name: String

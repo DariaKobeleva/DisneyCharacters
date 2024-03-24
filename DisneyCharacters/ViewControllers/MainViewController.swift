@@ -20,7 +20,8 @@ final class MainViewController: UITableViewController {
         tableView.rowHeight = 70
         tableView.backgroundColor = .white
         
-        fetchData(from: NetworkManager.APIEndpoint.baseURL.url)
+        //fetchData(from: NetworkManager.APIEndpoint.baseURL.url)
+        //TODO: - FetchChharacters
         networkManager.fetchCharacters(from: NetworkManager.APIEndpoint.baseURL.url) { result in
             
         }
@@ -35,20 +36,20 @@ final class MainViewController: UITableViewController {
         }
     }
     
-    // MARK: - Private Methods
-    private func fetchData(from url: URL?) {
-        networkManager.fetch(from: url) { [weak self] result in
-            switch result {
-            case .success(let charactersResponse):
-                self?.charactersResponse = charactersResponse
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
+//    // MARK: - Private Methods
+//    private func fetchData(from url: URL?) {
+//        networkManager.fetch(from: url) { [weak self] result in
+//            switch result {
+//            case .success(let charactersResponse):
+//                self?.charactersResponse = charactersResponse
+//                DispatchQueue.main.async {
+//                    self?.tableView.reloadData()
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
 }
 
 // MARK: - UITableViewDataSource

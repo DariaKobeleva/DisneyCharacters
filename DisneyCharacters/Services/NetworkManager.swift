@@ -24,7 +24,7 @@ final class NetworkManager {
             .responseJSON { dataResponse in
                 switch dataResponse.result {
                 case .success(let value):
-                let characters =  Character.getCharacters(from: value)
+                    let characters =  Character.getCharacters(from: value)
                     completion(.success(characters))
                 case .failure(let error):
                     print(error)
@@ -33,40 +33,18 @@ final class NetworkManager {
             }
     }
     
-    func fetch(from url: URL?, completion: @escaping (Result<CharactersResponse, NetworkError>) -> Void) {
-        guard let url  else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data, error == nil else {
-                completion(.failure(.noData))
-                return
-            }
-            do {
-                let characters = try JSONDecoder().decode(CharactersResponse.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(characters))
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completion(.failure(.decodingError))
+    func fetchData(from url: String, completion: @escaping(Result<Data, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    print(error)
+                    completion(.failure(error))
                 }
             }
-        }.resume()
-    }
-    
-    func fetchImage(from url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else {
-                completion(.failure(.noData))
-                return
-            }
-            DispatchQueue.main.async {
-                completion(.success(data))
-            }
-        }.resume()
     }
 }
 
