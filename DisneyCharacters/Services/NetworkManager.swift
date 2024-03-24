@@ -18,10 +18,18 @@ final class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     
-    func fetchCharacters(){
-        AF.request(APIEndpoint.baseURL.url)
+    func fetchCharacters(from url: URL, completion: @escaping(Result<[Character], AFError>) -> Void){
+        AF.request(url)
+            .validate()
             .responseJSON { dataResponse in
-                print(dataResponse)
+                switch dataResponse.result {
+                case .success(let value):
+                let characters =  Character.getCharacters(from: value)
+                    completion(.success(characters))
+                case .failure(let error):
+                    print(error)
+                    completion(.failure(error))
+                }
             }
     }
     

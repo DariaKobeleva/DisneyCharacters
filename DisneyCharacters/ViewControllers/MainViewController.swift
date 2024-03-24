@@ -17,10 +17,13 @@ final class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 80
+        tableView.rowHeight = 70
         tableView.backgroundColor = .white
         
         fetchData(from: NetworkManager.APIEndpoint.baseURL.url)
+        networkManager.fetchCharacters(from: NetworkManager.APIEndpoint.baseURL.url) { result in
+            
+        }
     }
     
     // MARK: - Navigation
