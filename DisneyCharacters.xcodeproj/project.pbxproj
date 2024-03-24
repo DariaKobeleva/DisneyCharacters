@@ -16,6 +16,7 @@
 		201BD3272BAF3942004CB5F3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BD3262BAF3942004CB5F3 /* TableViewCell.swift */; };
 		201BD3292BAF3A62004CB5F3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BD3282BAF3A62004CB5F3 /* NetworkManager.swift */; };
 		201BD32B2BAF3C4C004CB5F3 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BD32A2BAF3C4C004CB5F3 /* Character.swift */; };
+		204C2CA92BB07CD400399890 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C2CA82BB07CD400399890 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		201BD3262BAF3942004CB5F3 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		201BD3282BAF3A62004CB5F3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		201BD32A2BAF3C4C004CB5F3 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		204C2CA82BB07CD400399890 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				201BD3122BAF35FF004CB5F3 /* AppDelegate.swift */,
 				201BD3142BAF35FF004CB5F3 /* SceneDelegate.swift */,
 				201BD3162BAF35FF004CB5F3 /* MainViewController.swift */,
+				204C2CA82BB07CD400399890 /* DetailsViewController.swift */,
 				201BD3282BAF3A62004CB5F3 /* NetworkManager.swift */,
 				201BD3262BAF3942004CB5F3 /* TableViewCell.swift */,
 				201BD32A2BAF3C4C004CB5F3 /* Character.swift */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				204C2CA92BB07CD400399890 /* DetailsViewController.swift in Sources */,
 				201BD3172BAF35FF004CB5F3 /* MainViewController.swift in Sources */,
 				201BD3272BAF3942004CB5F3 /* TableViewCell.swift in Sources */,
 				201BD3292BAF3A62004CB5F3 /* NetworkManager.swift in Sources */,

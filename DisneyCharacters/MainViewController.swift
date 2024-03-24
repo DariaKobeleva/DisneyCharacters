@@ -12,16 +12,26 @@ class MainViewController: UITableViewController {
     //MARK: Private properties
     private let networkManager = NetworkManager.shared
     private var charactersResponse: CharactersResponse?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 70
+        tableView.rowHeight = 80
         tableView.backgroundColor = .white
         
         fetchData(from: NetworkManager.APIEndpoint.baseURL.url)
     }
     
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        if let detailsVC = segue.destination as? DetailsViewController {
+            let character = charactersResponse?.data[indexPath.row]
+            detailsVC.character = character
+        }
+    }
     
+    // MARK: - Private Methods
     private func fetchData(from url: URL?) {
         networkManager.fetch(CharactersResponse.self, from: url) { [weak self] result in
             switch result {

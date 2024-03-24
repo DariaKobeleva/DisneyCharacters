@@ -13,23 +13,20 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var characterImageView: UIImageView!{
         didSet {
-            characterImageView.contentMode = .scaleAspectFit
+            characterImageView.contentMode = .scaleAspectFill
             characterImageView.clipsToBounds = true
             characterImageView.layer.cornerRadius = characterImageView.frame.height / 2
-            characterImageView.backgroundColor = .white
         }
     }
     
     private let networkManager = NetworkManager.shared
-    private let defaultImage = "https://i.pinimg.com/originals/41/2e/de/412edea874be3c4faee187d522c30088.jpg"
-    //Как обработать дефолтное изображение?
-    
+        
     // MARK: - Public methods
     func configure(with character: Character?) {
         guard let character else { return }
         nameLabel.text = character.name
         
-        guard let imageUrl = character.imageUrl ?? URL(string: defaultImage) else { return }
+        guard let imageUrl = character.imageUrl ?? URL(string: Character.defaultImage) else { return }
         networkManager.fetchImage(from: imageUrl) { [weak self] result in
             switch result {
             case .success(let imageData):

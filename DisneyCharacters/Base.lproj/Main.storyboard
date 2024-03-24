@@ -50,6 +50,7 @@
                                 <connections>
                                     <outlet property="characterImageView" destination="hl5-sX-GzW" id="UBI-Lo-61D"/>
                                     <outlet property="nameLabel" destination="STb-Uw-3FS" id="TJH-EZ-ebj"/>
+                                    <segue destination="GuR-7l-wCA" kind="show" id="dKu-rg-hJW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -61,18 +62,15 @@
                     <navigationItem key="navigationItem" title="Disney Characters" id="NP7-N5-8fb">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Fay-YF-5QA"/>
                     </navigationItem>
-                    <connections>
-                        <segue destination="GuR-7l-wCA" kind="show" identifier="showDetails" id="FlX-Nq-1UE"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1t-CP-RcJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-160" y="53"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="1qC-Ev-8Ew">
             <objects>
-                <viewController id="GuR-7l-wCA" sceneMemberID="viewController">
+                <viewController id="GuR-7l-wCA" customClass="DetailsViewController" customModule="DisneyCharacters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OiF-5F-5mS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,8 +82,8 @@
                                     <constraint firstAttribute="width" constant="240" id="ZTL-62-srl"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="N16-Cb-pYO">
-                                <rect key="frame" x="16" y="468" width="361" height="85.666666666666629"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N16-Cb-pYO">
+                                <rect key="frame" x="16" y="468" width="361" height="48.666666666666629"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-fz-lFE">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="20.333333333333332"/>
@@ -94,7 +92,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Film" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mi8-Uv-xLF">
-                                        <rect key="frame" x="0.0" y="65.333333333333371" width="31.333333333333332" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="28.333333333333314" width="31.333333333333332" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -113,6 +111,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w4H-TQ-BsU"/>
+                    <connections>
+                        <outlet property="characterImageView" destination="2Uk-oJ-Y3I" id="Dt8-Wa-Fys"/>
+                        <outlet property="filmsLabel" destination="mi8-Uv-xLF" id="D2L-N8-7J3"/>
+                        <outlet property="nameLabel" destination="0xL-fz-lFE" id="yGk-tR-ktv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCk-ba-Cq1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

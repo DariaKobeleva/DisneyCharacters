@@ -21,4 +21,10 @@ struct Character: Decodable {
     let name: String
     let films: [String]
     let imageUrl: URL?
+    
+    static let defaultImage = "https://i.pinimg.com/originals/41/2e/de/412edea874be3c4faee187d522c30088.jpg"
+    
+    func filmsList() -> String {
+        films.joined(separator: ", ")
+    }
 }
