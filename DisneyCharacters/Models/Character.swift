@@ -22,6 +22,7 @@ struct Character: Decodable {
     let films: [String]
     let imageUrl: URL?
     
+    //Не совсем понимаю, куда добавить изображение по дефолту, в assets там image, а у меня utr
     static let defaultImage = "https://i.pinimg.com/originals/41/2e/de/412edea874be3c4faee187d522c30088.jpg"
     
     func filmsList() -> String {

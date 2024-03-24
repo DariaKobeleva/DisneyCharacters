@@ -7,12 +7,13 @@
 
 import UIKit
 
-class MainViewController: UITableViewController {
+final class MainViewController: UITableViewController {
     
     //MARK: Private properties
     private let networkManager = NetworkManager.shared
     private var charactersResponse: CharactersResponse?
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         

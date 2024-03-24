@@ -64,19 +64,75 @@
 		201BD3112BAF35FF004CB5F3 /* DisneyCharacters */ = {
 			isa = PBXGroup;
 			children = (
-				201BD3122BAF35FF004CB5F3 /* AppDelegate.swift */,
-				201BD3142BAF35FF004CB5F3 /* SceneDelegate.swift */,
-				201BD3162BAF35FF004CB5F3 /* MainViewController.swift */,
-				204C2CA82BB07CD400399890 /* DetailsViewController.swift */,
-				201BD3282BAF3A62004CB5F3 /* NetworkManager.swift */,
-				201BD3262BAF3942004CB5F3 /* TableViewCell.swift */,
-				201BD32A2BAF3C4C004CB5F3 /* Character.swift */,
-				201BD3182BAF35FF004CB5F3 /* Main.storyboard */,
-				201BD31B2BAF3602004CB5F3 /* Assets.xcassets */,
-				201BD31D2BAF3602004CB5F3 /* LaunchScreen.storyboard */,
-				201BD3202BAF3602004CB5F3 /* Info.plist */,
+				204C2CB02BB0A3DD00399890 /* SupportingFiles */,
+				204C2CAA2BB0A36D00399890 /* ViewControllers */,
+				204C2CAB2BB0A37D00399890 /* Services */,
+				204C2CAC2BB0A38700399890 /* Views */,
+				204C2CAD2BB0A39500399890 /* Models */,
+				204C2CAE2BB0A3B900399890 /* Storyboards */,
+				204C2CAF2BB0A3CB00399890 /* Sourse */,
 			);
 			path = DisneyCharacters;
+			sourceTree = "<group>";
+		};
+		204C2CAA2BB0A36D00399890 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				201BD3162BAF35FF004CB5F3 /* MainViewController.swift */,
+				204C2CA82BB07CD400399890 /* DetailsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		204C2CAB2BB0A37D00399890 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				201BD3282BAF3A62004CB5F3 /* NetworkManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		204C2CAC2BB0A38700399890 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				201BD3262BAF3942004CB5F3 /* TableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		204C2CAD2BB0A39500399890 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				201BD32A2BAF3C4C004CB5F3 /* Character.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		204C2CAE2BB0A3B900399890 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				201BD3182BAF35FF004CB5F3 /* Main.storyboard */,
+				201BD31D2BAF3602004CB5F3 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		204C2CAF2BB0A3CB00399890 /* Sourse */ = {
+			isa = PBXGroup;
+			children = (
+				201BD31B2BAF3602004CB5F3 /* Assets.xcassets */,
+			);
+			path = Sourse;
+			sourceTree = "<group>";
+		};
+		204C2CB02BB0A3DD00399890 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				201BD3122BAF35FF004CB5F3 /* AppDelegate.swift */,
+				201BD3142BAF35FF004CB5F3 /* SceneDelegate.swift */,
+				201BD3202BAF3602004CB5F3 /* Info.plist */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,7 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DisneyCharacters/Info.plist;
+				INFOPLIST_FILE = DisneyCharacters/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -340,7 +396,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DisneyCharacters/Info.plist;
+				INFOPLIST_FILE = DisneyCharacters/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

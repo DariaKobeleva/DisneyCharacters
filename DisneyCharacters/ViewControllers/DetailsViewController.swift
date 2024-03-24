@@ -26,7 +26,7 @@ final class DetailsViewController: UIViewController {
         characterImageView.layer.cornerRadius = 15
         configure(with: character)
     }
-    
+    //Снова создала функцию, не уверена, что правильно, потому что копипаст
     // MARK: - Private methods
     func configure(with character: Character?) {
         guard let character else { return }
