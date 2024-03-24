@@ -34,11 +34,13 @@ final class MainViewController: UITableViewController {
     
     // MARK: - Private Methods
     private func fetchData(from url: URL?) {
-        networkManager.fetch(CharactersResponse.self, from: url) { [weak self] result in
+        networkManager.fetch(from: url) { [weak self] result in
             switch result {
-            case .success(let characters):
-                self?.charactersResponse = characters
-                self?.tableView.reloadData()
+            case .success(let charactersResponse):
+                self?.charactersResponse = charactersResponse
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
             case .failure(let error):
                 print(error)
             }

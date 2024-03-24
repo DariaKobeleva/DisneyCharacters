@@ -16,40 +16,40 @@ enum NetworkError: Error {
 final class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
-    
-    func fetch<T: Decodable>(_ type: T.Type, from url: URL?, with completion: @escaping(Result<T, NetworkError>) -> Void) {
-        guard let url = url else {
+    func fetch(from url: URL?, completion: @escaping (Result<CharactersResponse, NetworkError>) -> Void) {
+        guard let url  else {
             completion(.failure(.invalidURL))
             return
         }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data else {
+            guard let data, error == nil else {
                 completion(.failure(.noData))
-                print(error?.localizedDescription ?? "No error description")
                 return
             }
             do {
-                let dataModel = try JSONDecoder().decode(T.self, from: data)
+                let characters = try JSONDecoder().decode(CharactersResponse.self, from: data)
                 DispatchQueue.main.async {
-                    completion(.success(dataModel))
+                    completion(.success(characters))
                 }
             } catch {
-                completion(.failure(.decodingError))
+                DispatchQueue.main.async {
+                    completion(.failure(.decodingError))
+                }
             }
         }.resume()
     }
     
-    func fetchImage(from url: URL, completion: @escaping(Result<Data, NetworkError>) -> Void) {
-        DispatchQueue.global().async {
-            guard let imageData = try? Data(contentsOf: url) else {
+    func fetchImage(from url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else {
                 completion(.failure(.noData))
                 return
             }
             DispatchQueue.main.async {
-                completion(.success(imageData))
+                completion(.success(data))
             }
-        }
+        }.resume()
     }
 }
 
