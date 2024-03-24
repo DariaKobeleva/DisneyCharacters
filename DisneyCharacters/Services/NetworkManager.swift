@@ -57,11 +57,15 @@ final class NetworkManager {
 extension NetworkManager {
     enum APIEndpoint {
         case baseURL
+        case defaultImage
         
         var url: URL {
             switch self {
             case .baseURL:
                 return URL(string: "https://api.disneyapi.dev/character")!
+                //Или здесь дефолтное изображение, но непонятно, как его использовать
+            case .defaultImage:
+                return URL(string: "https://i.pinimg.com/originals/41/2e/de/412edea874be3c4faee187d522c30088.jpg")!
             }
         }
     }
