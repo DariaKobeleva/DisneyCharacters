@@ -19,15 +19,27 @@ final class DetailsViewController: UIViewController {
     
     // MARK: - Private Properties
     private let networkManager = NetworkManager.shared
+    private var spinnerView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        characterImageView.layer.cornerRadius = 15
+        characterImageView.contentMode = .scaleAspectFit
+        showSpinner(in: characterImageView)
         configure(with: character)
     }
+    
+    // MARK: - Private Methods
+    private func showSpinner(in view: UIView) {
+        spinnerView = UIActivityIndicatorView(style: .large)
+        spinnerView.color = .white
+        spinnerView.startAnimating()
+        spinnerView.center = view.center
+        spinnerView.hidesWhenStopped = true
+        view.addSubview(spinnerView)
+    }
+    
     //Снова создала функцию, не уверена, что правильно, потому что копипаст
-    // MARK: - Private methods
     func configure(with character: Character?) {
         guard let character else { return }
         title = character.name
