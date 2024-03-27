@@ -11,61 +11,69 @@ final class MainViewController: UITableViewController {
     
     //MARK: Private properties
     private let networkManager = NetworkManager.shared
-    private var charactersResponse: CharactersResponse?
+    private var characters: [Character] = []
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 70
+        tableView.rowHeight = 80
         tableView.backgroundColor = .white
         
-        //fetchData(from: NetworkManager.APIEndpoint.baseURL.url)
-        //TODO: - FetchChharacters
-        networkManager.fetchCharacters(from: NetworkManager.APIEndpoint.baseURL.url) { result in
-            
-        }
+        fetchData()
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailVC = segue.destination as? DetailsViewController
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        if let detailsVC = segue.destination as? DetailsViewController {
-            let character = charactersResponse?.data[indexPath.row]
-            detailsVC.character = character
-        }
+        let character = characters[indexPath.row]
+        detailVC?.character = character
+        
     }
     
-//    // MARK: - Private Methods
-//    private func fetchData(from url: URL?) {
-//        networkManager.fetch(from: url) { [weak self] result in
-//            switch result {
-//            case .success(let charactersResponse):
-//                self?.charactersResponse = charactersResponse
-//                DispatchQueue.main.async {
-//                    self?.tableView.reloadData()
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
+    // MARK: - Private Methods
+    private func fetchData() {
+        networkManager.fetchCharacters { [unowned self] result in
+            switch result {
+            case .success(let characters):
+                self.characters = characters
+                tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension MainViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        charactersResponse?.data.count ?? 0
+        characters.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: "characterCell",
-            for: indexPath
-        )
-        guard let cell = cell as? TableViewCell else { return UITableViewCell() }
-        let character = charactersResponse?.data[indexPath.row]
-        cell.configure(with: character)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath)
+        
+        var content = cell.defaultContentConfiguration()
+        content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
+        content.imageProperties.cornerRadius = content.imageProperties.maximumSize.height / 2
+        
+        
+        let character = characters[indexPath.row]
+        content.text = character.name
+        
+        networkManager.fetchData(from: character.imageUrl) { result in
+            switch result {
+            case .success(let imageData):
+                content.image = UIImage(data: imageData)
+                cell.contentConfiguration = content
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        cell.contentConfiguration = content
         return cell
     }
 }
