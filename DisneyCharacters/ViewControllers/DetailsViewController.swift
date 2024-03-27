@@ -39,13 +39,14 @@ final class DetailsViewController: UIViewController {
         view.addSubview(spinnerView)
     }
     
-    //Снова создала функцию, не уверена, что правильно, потому что копипаст
-    func configure(with character: Character?) {
+    private  func configure(with character: Character?) {
         guard let character else { return }
         title = character.name
         
         nameLabel.text = "Name: \(character.name)"
-        filmsLabel.text = "Films: \(character.filmsList())"
+        filmsLabel.text = character.filmsList().isEmpty 
+        ? "No films" : "Films: \(character.filmsList())"
+      
         
         networkManager.fetchData(from: character.imageUrl) { [unowned self]result in
             switch result {

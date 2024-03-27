@@ -10,11 +10,11 @@ import Foundation
 //MARK: - Character
 struct Character {
     let name: String
-    let films: [String]
+    let films: [String]?
     let imageUrl: String
     
     func filmsList() -> String {
-        films.joined(separator: ", ")
+        films?.joined(separator: ", ") ?? "No films"
     }
     
     init(characterDetails: [String: Any]) {

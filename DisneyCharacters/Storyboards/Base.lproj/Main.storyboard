@@ -17,14 +17,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="characterCell" rowHeight="70" id="jlo-Ps-u9x">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="characterCell" rowHeight="70" id="jlo-Ps-u9x" customClass="TableViewCell" customModule="DisneyCharacters" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jlo-Ps-u9x" id="b4q-HV-TTW">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="hl5-sX-GzW">
+                                            <rect key="frame" x="16" y="10" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="KKE-FC-6uy"/>
+                                                <constraint firstAttribute="width" constant="50" id="lMP-l8-axw"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STb-Uw-3FS">
+                                            <rect key="frame" x="73" y="21" width="316" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="STb-Uw-3FS" firstAttribute="trailing" secondItem="b4q-HV-TTW" secondAttribute="trailingMargin" constant="16" id="DF4-0D-vmN"/>
+                                        <constraint firstItem="hl5-sX-GzW" firstAttribute="top" secondItem="b4q-HV-TTW" secondAttribute="top" constant="10" id="Gnj-S2-5Vr"/>
+                                        <constraint firstItem="STb-Uw-3FS" firstAttribute="top" secondItem="b4q-HV-TTW" secondAttribute="topMargin" constant="10" id="fzj-AW-t5b"/>
+                                        <constraint firstItem="STb-Uw-3FS" firstAttribute="leading" secondItem="hl5-sX-GzW" secondAttribute="trailing" constant="7" id="gme-Si-aac"/>
+                                        <constraint firstAttribute="bottom" secondItem="hl5-sX-GzW" secondAttribute="bottom" constant="10" id="mmu-Sy-nWd"/>
+                                        <constraint firstItem="hl5-sX-GzW" firstAttribute="leading" secondItem="b4q-HV-TTW" secondAttribute="leading" constant="16" id="uJv-RF-8hg"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="characterImageView" destination="hl5-sX-GzW" id="UBI-Lo-61D"/>
+                                    <outlet property="nameLabel" destination="STb-Uw-3FS" id="TJH-EZ-ebj"/>
                                     <segue destination="GuR-7l-wCA" kind="show" id="dKu-rg-hJW"/>
                                 </connections>
                             </tableViewCell>
@@ -114,7 +139,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="defaultImage" width="1500" height="1000"/>
+        <image name="defaultImage" width="1920" height="1707"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -17,8 +17,7 @@ final class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 80
-        tableView.backgroundColor = .white
+        tableView.rowHeight = 70
         
         fetchData()
     }
@@ -53,27 +52,15 @@ extension MainViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath)
-        
-        var content = cell.defaultContentConfiguration()
-        content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
-        content.imageProperties.cornerRadius = content.imageProperties.maximumSize.height / 2
-        
-        
-        let character = characters[indexPath.row]
-        content.text = character.name
-        
-        networkManager.fetchData(from: character.imageUrl) { result in
-            switch result {
-            case .success(let imageData):
-                content.image = UIImage(data: imageData)
-                cell.contentConfiguration = content
-            case .failure(let error):
-                print(error)
-            }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "characterCell",
+            for: indexPath
+        ) as? TableViewCell else {
+            return UITableViewCell()
         }
         
-        cell.contentConfiguration = content
+        let character = characters[indexPath.row]
+        cell.configure(with: character)
         return cell
     }
 }
