@@ -7,25 +7,25 @@
 
 import Foundation
 
-struct CharactersResponse: Decodable {
-    let info: Info
-    let data: [Character]
-}
-
-struct Info: Decodable {
-    let totalPages: Int
-    //TODO: - Add other info
-}
-
-struct Character: Decodable {
+//MARK: - Character
+struct Character {
     let name: String
-    let films: [String]
-    let imageUrl: URL?
-    
-    //Не совсем понимаю, куда добавить изображение по дефолту, в assets там image, а у меня url
-    static let defaultImage = "https://i.pinimg.com/originals/41/2e/de/412edea874be3c4faee187d522c30088.jpg"
+    let films: [String]?
+    let imageUrl: String
     
     func filmsList() -> String {
-        films.joined(separator: ", ")
+        films?.joined(separator: ", ") ?? "No films"
+    }
+    
+    init(characterDetails: [String: Any]) {
+        name = characterDetails["name"] as? String ?? ""
+        films = characterDetails["films"] as? [String] ?? []
+        imageUrl = characterDetails["imageUrl"] as? String ?? ""
+    }
+    
+    static func getCharacters(from value: Any) -> [Character] {
+        guard let value = value as? [String : Any] else { return [] }
+        guard let charactersDetails = value["data"] as? [[String: Any]] else { return [] }
+        return charactersDetails.map { Character(characterDetails: $0)}
     }
 }

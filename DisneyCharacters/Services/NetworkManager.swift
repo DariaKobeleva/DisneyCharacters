@@ -6,67 +6,51 @@
 //
 
 import Foundation
+import Alamofire
 
-enum NetworkError: Error {
-    case invalidURL
-    case noData
-    case decodingError
+enum APIEndpoint {
+    case baseURL
+    
+    var url: URL {
+        switch self {
+        case .baseURL:
+            return URL(string: "https://api.disneyapi.dev/character")!
+        }
+    }
 }
 
 final class NetworkManager {
+    
     static let shared = NetworkManager()
     private init() {}
-    func fetch(from url: URL?, completion: @escaping (Result<CharactersResponse, NetworkError>) -> Void) {
-        guard let url  else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data, error == nil else {
-                completion(.failure(.noData))
-                return
-            }
-            do {
-                let characters = try JSONDecoder().decode(CharactersResponse.self, from: data)
-                DispatchQueue.main.async {
+    
+    func fetchCharacters(_ completion: @escaping (Result<[Character], AFError>) -> Void){
+        AF.request(APIEndpoint.baseURL.url)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let value):
+                    let characters =  Character.getCharacters(from: value)
                     completion(.success(characters))
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completion(.failure(.decodingError))
+                case .failure(let error):
+                    print(error)
+                    completion(.failure(error))
                 }
             }
-        }.resume()
     }
     
-    func fetchImage(from url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else {
-                completion(.failure(.noData))
-                return
+    func fetchData(from url: String, completion: @escaping(Result<Data, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    print(error)
+                    completion(.failure(error))
+                }
             }
-            DispatchQueue.main.async {
-                completion(.success(data))
-            }
-        }.resume()
     }
 }
 
-// MARK: - APIEndpoint
-extension NetworkManager {
-    enum APIEndpoint {
-        case baseURL
-        case defaultImage
-        
-        var url: URL {
-            switch self {
-            case .baseURL:
-                return URL(string: "https://api.disneyapi.dev/character")!
-                //Или здесь дефолтное изображение, но непонятно, как его использовать
-            case .defaultImage:
-                return URL(string: "https://i.pinimg.com/originals/41/2e/de/412edea874be3c4faee187d522c30088.jpg")!
-            }
-        }
-    }
-}

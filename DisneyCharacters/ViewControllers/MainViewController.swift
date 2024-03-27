@@ -11,36 +11,33 @@ final class MainViewController: UITableViewController {
     
     //MARK: Private properties
     private let networkManager = NetworkManager.shared
-    private var charactersResponse: CharactersResponse?
+    private var characters: [Character] = []
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 80
-        tableView.backgroundColor = .white
+        tableView.rowHeight = 70
         
-        fetchData(from: NetworkManager.APIEndpoint.baseURL.url)
+        fetchData()
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailVC = segue.destination as? DetailsViewController
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        if let detailsVC = segue.destination as? DetailsViewController {
-            let character = charactersResponse?.data[indexPath.row]
-            detailsVC.character = character
-        }
+        let character = characters[indexPath.row]
+        detailVC?.character = character
+        
     }
     
     // MARK: - Private Methods
-    private func fetchData(from url: URL?) {
-        networkManager.fetch(from: url) { [weak self] result in
+    private func fetchData() {
+        networkManager.fetchCharacters { [unowned self] result in
             switch result {
-            case .success(let charactersResponse):
-                self?.charactersResponse = charactersResponse
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
+            case .success(let characters):
+                self.characters = characters
+                tableView.reloadData()
             case .failure(let error):
                 print(error)
             }
@@ -51,16 +48,18 @@ final class MainViewController: UITableViewController {
 // MARK: - UITableViewDataSource
 extension MainViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        charactersResponse?.data.count ?? 0
+        characters.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
+        guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "characterCell",
             for: indexPath
-        )
-        guard let cell = cell as? TableViewCell else { return UITableViewCell() }
-        let character = charactersResponse?.data[indexPath.row]
+        ) as? TableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let character = characters[indexPath.row]
         cell.configure(with: character)
         return cell
     }

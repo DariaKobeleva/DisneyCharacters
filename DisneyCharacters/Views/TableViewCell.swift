@@ -19,21 +19,22 @@ class TableViewCell: UITableViewCell {
         }
     }
     
+    //MARK: - Private Methods
     private let networkManager = NetworkManager.shared
-        
+    
     // MARK: - Public methods
     func configure(with character: Character?) {
         guard let character else { return }
         nameLabel.text = character.name
         
-        guard let imageUrl = character.imageUrl ?? URL(string: Character.defaultImage) else { return }
-        networkManager.fetchImage(from: imageUrl) { [weak self] result in
+        networkManager.fetchData(from: character.imageUrl) { [unowned self] result in
             switch result {
             case .success(let imageData):
-                self?.characterImageView.image = UIImage(data: imageData)
+                characterImageView.image = UIImage(data: imageData)
             case .failure(let error):
                 print(error)
             }
         }
     }
+    
 }
