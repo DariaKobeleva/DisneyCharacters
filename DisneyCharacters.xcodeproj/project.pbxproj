@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20118C322BB0B17B002A2C6C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 20118C312BB0B17B002A2C6C /* Alamofire */; };
 		201BD3132BAF35FF004CB5F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BD3122BAF35FF004CB5F3 /* AppDelegate.swift */; };
 		201BD3152BAF35FF004CB5F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BD3142BAF35FF004CB5F3 /* SceneDelegate.swift */; };
 		201BD3172BAF35FF004CB5F3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BD3162BAF35FF004CB5F3 /* MainViewController.swift */; };
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20118C322BB0B17B002A2C6C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +153,9 @@
 			dependencies = (
 			);
 			name = DisneyCharacters;
+			packageProductDependencies = (
+				20118C312BB0B17B002A2C6C /* Alamofire */,
+			);
 			productName = DisneyCharacters;
 			productReference = 201BD30F2BAF35FF004CB5F3 /* DisneyCharacters.app */;
 			productType = "com.apple.product-type.application";
@@ -179,6 +184,9 @@
 				Base,
 			);
 			mainGroup = 201BD3062BAF35FF004CB5F3;
+			packageReferences = (
+				20118C302BB0B17B002A2C6C /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 201BD3102BAF35FF004CB5F3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -441,6 +449,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		20118C302BB0B17B002A2C6C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		20118C312BB0B17B002A2C6C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20118C302BB0B17B002A2C6C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 201BD3072BAF35FF004CB5F3 /* Project object */;
 }
