@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TableViewCell: UITableViewCell {
     
@@ -19,22 +20,17 @@ class TableViewCell: UITableViewCell {
         }
     }
     
-    //MARK: - Private Methods
-    private let networkManager = NetworkManager.shared
-    
     // MARK: - Public methods
     func configure(with character: Character?) {
         guard let character else { return }
         nameLabel.text = character.name
         
-        networkManager.fetchData(from: character.imageUrl) { [unowned self] result in
-            switch result {
-            case .success(let imageData):
-                characterImageView.image = UIImage(data: imageData)
-            case .failure(let error):
-                print(error)
-            }
+        let imageUrl = URL(string: character.imageUrl)
+        
+        if character.imageUrl.isEmpty {
+            characterImageView.image = UIImage(named: "defaultImage")
+        } else {
+            characterImageView.kf.setImage(with: imageUrl)
         }
     }
-    
 }

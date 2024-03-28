@@ -18,6 +18,7 @@
 		201BD3292BAF3A62004CB5F3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BD3282BAF3A62004CB5F3 /* NetworkManager.swift */; };
 		201BD32B2BAF3C4C004CB5F3 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BD32A2BAF3C4C004CB5F3 /* Character.swift */; };
 		204C2CA92BB07CD400399890 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C2CA82BB07CD400399890 /* DetailsViewController.swift */; };
+		20E548352BB481E800698E33 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 20E548342BB481E800698E33 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20E548352BB481E800698E33 /* Kingfisher in Frameworks */,
 				20118C322BB0B17B002A2C6C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +157,7 @@
 			name = DisneyCharacters;
 			packageProductDependencies = (
 				20118C312BB0B17B002A2C6C /* Alamofire */,
+				20E548342BB481E800698E33 /* Kingfisher */,
 			);
 			productName = DisneyCharacters;
 			productReference = 201BD30F2BAF35FF004CB5F3 /* DisneyCharacters.app */;
@@ -186,6 +189,7 @@
 			mainGroup = 201BD3062BAF35FF004CB5F3;
 			packageReferences = (
 				20118C302BB0B17B002A2C6C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				20E548332BB481E800698E33 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 201BD3102BAF35FF004CB5F3 /* Products */;
 			projectDirPath = "";
@@ -459,6 +463,14 @@
 				version = 5.0.0;
 			};
 		};
+		20E548332BB481E800698E33 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -466,6 +478,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 20118C302BB0B17B002A2C6C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		20E548342BB481E800698E33 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20E548332BB481E800698E33 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
